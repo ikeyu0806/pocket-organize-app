@@ -1,0 +1,30 @@
+{
+  "name": "pocket-organize-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Yuki Ikegaya",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "node-sass": "^6.0.0",
+    "sass-loader": "^11.0.1",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.6",
+    "vue-svg-loader": "^0.16.0",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.7.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "build:dev": "webpack --config ./webpack.dev.js --watch",
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-cli serve --mode development",
+    "test": "jest --watch"
+  }
+}
