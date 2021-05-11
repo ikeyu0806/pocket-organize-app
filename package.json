@@ -8,6 +8,7 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "babel-loader": "^8.2.2",
+    "buefy": "^0.9.7",
     "css-loader": "^5.2.4",
     "node-sass": "^6.0.0",
     "sass-loader": "^11.0.1",
