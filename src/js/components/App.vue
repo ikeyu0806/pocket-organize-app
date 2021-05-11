@@ -1,11 +1,11 @@
 <template>
-  <section>
-    <b-button type="is-primary" @click="clickMe">Click Me</b-button>
-  </section>
+  <input-consumer-key></input-consumer-key>
 </template>
 
 <script>
+import InputConsumerKey from './InputConsumerKey'
 export default {
+  components: { InputConsumerKey },
   name: "App",
   methods: {
     clickMe() {

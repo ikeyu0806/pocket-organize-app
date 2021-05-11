@@ -56,7 +56,12 @@ module.exports = {
     extensions: ['.js', '.vue']
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      POCKET_CONSUMER_KEY: '97290-38a3238a0708edca3a66a111'
+
+    })
   ],
   devServer: {
     publicPath: '/dist/js/',
