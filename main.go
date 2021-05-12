@@ -16,7 +16,12 @@ type RequestTokenParam struct {
 	RedirectURL string `json:"redirect_uri"`
 }
 
-func get_request_token() {
+type RequestTokenResponse struct {
+	Code  string `json:"code"`
+	State string `json:"state"`
+}
+
+func get_request_token(w http.ResponseWriter) {
 	request_token_param := new(RequestTokenParam)
 	request_token_param.ConsumerKey = os.Getenv(("POCKET_COSUMER_KEY"))
 	request_token_param.RedirectURL = os.Getenv(("REDIRECT_URI"))
@@ -34,21 +39,29 @@ func get_request_token() {
 
 	defer res.Body.Close()
 
-	b, err := ioutil.ReadAll(res.Body)
+	body, err := ioutil.ReadAll(res.Body)
+
+	var token_response RequestTokenResponse
+
+	if err := json.Unmarshal(body, &token_response); err != nil {
+		log.Fatal(err)
+	}
+
 	if err != nil {
 		fmt.Println("http request error")
 		log.Fatal(err)
 	} else {
 		fmt.Println("http request success")
-		fmt.Println(string(b))
+		fmt.Println(token_response.Code)
 	}
+	w.Write(body)
 }
 
 func main() {
 	fs := http.FileServer(http.Dir("/workspace/pocket_app"))
 
 	http.HandleFunc("/auth_pocket", func(w http.ResponseWriter, r *http.Request) {
-		get_request_token()
+		get_request_token(w)
 	})
 
 	http.Handle("/", fs)
