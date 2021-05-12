@@ -4,8 +4,7 @@
       <div class="columns is-centered">
         <div class="column is-half">
           <b-field label="Pocketのコンシューマキーを入力してください">
-            <b-input v-model="consumerKey"></b-input>
-            <b-button type="is-info" @click="send">送信</b-button>
+            <b-button type="is-info" @click="send">Pocket認証ページを開く</b-button>
           </b-field>
         </div>
       </div>
@@ -15,10 +14,9 @@
 
 <script>
 export default {
-  consumerKey: "",
   methods: {
     send() {
-        this.$buefy.notification.open('送信しました')
+      this.$buefy.notification.open('送信しました');
     }
   }
 }

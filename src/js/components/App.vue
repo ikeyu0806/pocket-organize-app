@@ -4,13 +4,9 @@
 
 <script>
 import InputConsumerKey from './InputConsumerKey'
+
 export default {
   components: { InputConsumerKey },
-  name: "App",
-  methods: {
-    clickMe() {
-        this.$buefy.notification.open('Clicked!!')
-    }
-  }
+  name: "App"
 }
 </script>

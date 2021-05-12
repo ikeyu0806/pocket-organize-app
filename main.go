@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-	"text/template"
 )
 
 type Page struct {
@@ -10,19 +9,8 @@ type Page struct {
 	Message string
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	page := Page{}
-	tmpl, err := template.ParseFiles("index.html")
-	if err != nil {
-		panic(err)
-	}
-	err = tmpl.Execute(w, page)
-	if err != nil {
-		panic(err)
-	}
-}
-
 func main() {
-	http.HandleFunc("/", handler)
+	fs := http.FileServer(http.Dir("/workspace/pocket_app"))
+	http.Handle("/", fs)
 	http.ListenAndServe(":80", nil)
 }

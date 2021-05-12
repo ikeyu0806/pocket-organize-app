@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -17,7 +18,12 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "babel-loader",
+        options: {
+          presets: [
+            "@babel/preset-env"
+          ]
+        }
       },
       {
         test: /\.css$/,
@@ -39,16 +45,6 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'vue-svg-loader'
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          presets: [
-            "@babel/preset-env"
-          ]
-        }
       }
     ]
   },
