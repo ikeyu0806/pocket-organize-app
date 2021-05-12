@@ -4,7 +4,7 @@
       <div class="columns is-centered">
         <div class="column is-half">
           <b-field label="">
-            <b-button type="is-info" @click="open_pocket_auth_page">Pocket認証ページを開く</b-button>
+            <b-button type="is-info" @click="get_access_token">認証を完了する</b-button>
           </b-field>
         </div>
       </div>
@@ -17,13 +17,14 @@ import axios from 'axios'
 
 export default {
   methods: {
-    open_pocket_auth_page() {
-      axios.get('http://localhost:5000/get_request_token')
+    get_access_token() {
+      const code = localStorage.getItem('pocket_request_token')
+      axios.get(`http://localhost:5000/get_access_token?code=${code}`)
      .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
-      localStorage.setItem('pocket_request_token', response.data.code)
-      window.open(`https://getpocket.com/auth/authorize?request_token=${response.data.code}&redirect_uri=http://localhost:5000`, '_blank')
+      localStorage.setItem('pocket_access_token', response.data.access_token)
+      localStorage.removeItem('pocket_request_token')
      }).catch(err => {
       console.log('err:', err);
      })
