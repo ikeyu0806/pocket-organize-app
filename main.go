@@ -60,7 +60,7 @@ func get_request_token(w http.ResponseWriter) {
 func main() {
 	fs := http.FileServer(http.Dir("/workspace/pocket_app"))
 
-	http.HandleFunc("/auth_pocket", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/get_request_token", func(w http.ResponseWriter, r *http.Request) {
 		get_request_token(w)
 	})
 

@@ -1,12 +1,13 @@
 <template>
-  <input-consumer-key></input-consumer-key>
+  <pocket-auth></pocket-auth>
 </template>
 
 <script>
-import InputConsumerKey from './InputConsumerKey'
+import PocketAuth from './PocketAuth'
 
 export default {
-  components: { InputConsumerKey },
+  components: { PocketAuth },
   name: "App"
 }
+
 </script>
