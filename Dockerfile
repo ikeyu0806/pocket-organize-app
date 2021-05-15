@@ -1,10 +1,11 @@
 FROM golang:latest
 
-RUN mkdir -p -m 775 /workspace/pocket_app
+RUN mkdir -p -m 775 /usr/local/go/src/pocket-organize-app
+RUN mkdir -p -m 775 /usr/local/go/src/pocket-organize-app/dist/js
 
-WORKDIR /workspace/pocket_app
+WORKDIR /usr/local/go/src/pocket-organize-app
 
-ADD ./ /workspace/pocket_app
+ADD ./go/src/pocket-organize-app /usr/local/go/src/pocket-organize-app
 
-RUN ["go", "build"]
+RUN ["go", "build", "./"]
 CMD ["go", "run", "./main.go"]
