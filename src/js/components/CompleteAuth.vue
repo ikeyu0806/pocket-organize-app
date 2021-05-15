@@ -17,18 +17,19 @@ import axios from 'axios'
 
 export default {
   methods: {
-    get_access_token() {
-      const code = localStorage.getItem('pocket_request_token')
-      axios.get(`http://localhost:5000/get_access_token?code=${code}`)
-     .then(response => {
+  },
+  created (){
+    console.log("mounted")
+    const code = localStorage.getItem('pocket_request_token')
+    axios.get(`http://localhost:5000/get_access_token?code=${code}`)
+    .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
       localStorage.setItem('pocket_access_token', response.data.access_token)
       localStorage.removeItem('pocket_request_token')
-     }).catch(err => {
+    }).catch(err => {
       console.log('err:', err);
-     })
-    }
+    })
   }
 }
 </script>

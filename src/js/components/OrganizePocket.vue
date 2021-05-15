@@ -18,15 +18,18 @@ import axios from 'axios'
 export default {
   methods: {
     get_articles() {
-      const access_token = localStorage.getItem('pocket_access_token')
+
+    }
+  },
+  mounted: function() {
+    const access_token = localStorage.getItem('pocket_access_token')
       axios.get(`http://localhost:5000/get_articles?access_token=${access_token}`)
-     .then(response => {
+    .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
-     }).catch(err => {
+    }).catch(err => {
       console.log('err:', err);
-     })
-    }
+    })
   }
 }
 </script>
