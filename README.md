@@ -1,10 +1,14 @@
 webpackのbuild
 
 ```
-webpack --config webpack.dev.js
+# 開発環境
+yarn build:dev
+
+# 本番環境
+yarn build
 ```
 
-Dockerでのサーバ立ち上げ
+Dockerでのバックエンドサーバ立ち上げ
 
 ```
 docker build ./ -t pocket_app
