@@ -12,7 +12,8 @@
           placeholder="タグを入力してください">
         </b-taginput>
       </b-field>
-      <b-field label="チェックされた記事にタグを付与" :label-position="labelPosition" grouped>
+      <b-button class="button is-primary search-button">検索する</b-button>
+      <b-field label="チェックした記事にタグを付与" :label-position="labelPosition" grouped>
         <b-taginput
           :value="['レシピ', '映画']"
           ellipsis
@@ -20,7 +21,7 @@
           placeholder="タグを入力してください">
         </b-taginput>
       </b-field>
-      <b-button class="button is-primary">実行する</b-button>
+      <b-button class="button is-primary exec-button">更新する</b-button>
       <b-table :data="articles"
                checkable
                :checkbox-position="checkboxPosition">
@@ -29,7 +30,7 @@
                         v-slot="props">
           <a v-bind:href="props.row.given_url"
              target="_blank"
-             rel=“noopener”>{{ props.row.resolved_title }}</a>
+             rel=“noopener”>{{ articleTitle(props.row.resolved_title) }}</a>
         </b-table-column>
           <b-table-column field="time_added"
                   label="登録日時"
@@ -41,6 +42,17 @@
   </section>
 </template>
 
+<style>
+  .search-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .exec-button {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+</style>
+
 <script>
 import axios from 'axios'
 
@@ -51,6 +63,15 @@ export default {
       checkboxPosition: 'left'
     }
   },
+  methods:{
+    articleTitle: function(articleTitle) {
+      let result = articleTitle
+      if (result == "") {
+        result = "タイトルが登録されていません"
+      }
+      return result
+    },
+  }, 
   beforeCreate: function() {
     const access_token = localStorage.getItem('pocket_access_token')
       axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=10&tag=グルメ`)
