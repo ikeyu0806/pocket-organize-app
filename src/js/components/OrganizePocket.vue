@@ -35,7 +35,7 @@ export default {
   },
   mounted: function() {
     const access_token = localStorage.getItem('pocket_access_token')
-      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}`)
+      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=10`)
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)

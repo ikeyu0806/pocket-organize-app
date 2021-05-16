@@ -3,7 +3,7 @@ package entity
 type ArticleRequestParam struct {
 	ConsumerKey string `json:"consumer_key"`
 	AccessToken string `json:"access_token"`
-	Count       int    `json:"count"`
+	Count       string `json:"count"`
 }
 
 type ArticleResponse struct {

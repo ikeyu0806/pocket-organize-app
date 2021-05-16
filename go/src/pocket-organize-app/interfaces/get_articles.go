@@ -17,7 +17,7 @@ func Get_articles(w http.ResponseWriter, r *http.Request) {
 	pocket_request_param := new(entity.ArticleRequestParam)
 	pocket_request_param.ConsumerKey = os.Getenv(("POCKET_COSUMER_KEY"))
 	pocket_request_param.AccessToken = r.FormValue("access_token")
-	pocket_request_param.Count = 5
+	pocket_request_param.Count = r.FormValue("count")
 
 	pocket_request_json, _ := json.Marshal(pocket_request_param)
 	fmt.Printf("[pocket_request_json] %s\n", string(pocket_request_json))
