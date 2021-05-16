@@ -1,13 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-half">
-          <b-field label="">
-            <b-button type="is-info" @click="get_articles">記事を取得</b-button>
-          </b-field>
-        </div>
-      </div>
+      <b-table :data="articles" :columns="columns"></b-table>
     </div>
   </section>
 </template>
@@ -16,9 +10,27 @@
 import axios from 'axios'
 
 export default {
-  methods: {
-    get_articles() {
-
+  data () {
+    return {
+      articles: [],
+      columns: [
+        {
+          field: 'resolved_title',
+          label: 'resolved_title',
+        },
+        {
+          field: 'given_url',
+          label: 'given_url',
+        },
+        {
+          field: 'time_added',
+          label: 'time_added',
+        },
+        {
+          field: 'favorite',
+          label: 'favorite',
+        }
+      ]
     }
   },
   mounted: function() {
@@ -27,6 +39,7 @@ export default {
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
+      this.articles = Object.values(response.data.list)
     }).catch(err => {
       console.log('err:', err);
     })
