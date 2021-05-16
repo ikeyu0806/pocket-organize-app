@@ -2,7 +2,9 @@
   <section class="section">
     <div class="container">
       <b-field label="表示記事数" :label-position="labelPosition">
-        <b-numberinput :value="articleCount"></b-numberinput>
+        <b-numberinput :value="articleCount"
+                       class="articleCount">
+        </b-numberinput>
       </b-field>
       <b-field label="タグで検索" :label-position="labelPosition" grouped>
         <b-taginput
@@ -50,6 +52,9 @@
   .exec-button {
     margin-top: 10px;
     margin-bottom: 30px;
+  }
+  .articleCount {
+    width: 30%;
   }
 </style>
 
