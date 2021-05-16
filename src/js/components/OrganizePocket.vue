@@ -1,7 +1,20 @@
 <template>
   <section class="section">
     <div class="container">
-      <b-table :data="articles" :columns="columns"></b-table>
+      <b-table :data="articles"
+               checkable
+               :checkbox-position="checkboxPosition">
+        <b-table-column field="resolved_title"
+                        label="タイトル"
+                        v-slot="props">
+          <a v-bind:href="props.row.given_url">{{ props.row.resolved_title }}</a>
+        </b-table-column>
+          <b-table-column field="time_added"
+                  label="登録日時"
+                  v-slot="props">
+          {{ props.row.time_added }}
+        </b-table-column>
+      </b-table>
     </div>
   </section>
 </template>
@@ -13,20 +26,7 @@ export default {
   data () {
     return {
       articles: [],
-      columns: [
-        {
-          field: 'resolved_title',
-          label: 'タイトル',
-        },
-        {
-          field: 'given_url',
-          label: 'URL',
-        },
-        {
-          field: 'time_added',
-          label: '登録日時',
-        }
-      ]
+      checkboxPosition: 'left'
     }
   },
   beforeCreate: function() {
