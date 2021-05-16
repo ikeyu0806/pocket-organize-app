@@ -4,6 +4,7 @@ type ArticleRequestParam struct {
 	ConsumerKey string `json:"consumer_key"`
 	AccessToken string `json:"access_token"`
 	Count       string `json:"count"`
+	Tag         string `json:"tag"`
 }
 
 type ArticleResponse struct {

@@ -16,26 +16,22 @@ export default {
       columns: [
         {
           field: 'resolved_title',
-          label: 'resolved_title',
+          label: 'タイトル',
         },
         {
           field: 'given_url',
-          label: 'given_url',
+          label: 'URL',
         },
         {
           field: 'time_added',
-          label: 'time_added',
-        },
-        {
-          field: 'favorite',
-          label: 'favorite',
+          label: '登録日時',
         }
       ]
     }
   },
-  mounted: function() {
+  beforeCreate: function() {
     const access_token = localStorage.getItem('pocket_access_token')
-      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=10`)
+      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=10&tag=グルメ`)
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
