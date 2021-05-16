@@ -2,11 +2,11 @@
   <section class="section">
     <div class="container">
       <b-field label="表示記事数" :label-position="labelPosition">
-        <b-numberinput laceholder="10" :min="1" :max="100"></b-numberinput>
+        <b-numberinput :value="articleCount"></b-numberinput>
       </b-field>
       <b-field label="タグで検索" :label-position="labelPosition" grouped>
         <b-taginput
-          :value="['レシピ', '映画']"
+          :value="searchTag"
           ellipsis
           icon="label"
           placeholder="タグを入力してください">
@@ -15,7 +15,7 @@
       <b-button class="button is-primary search-button">検索する</b-button>
       <b-field label="チェックした記事にタグを付与" :label-position="labelPosition" grouped>
         <b-taginput
-          :value="['レシピ', '映画']"
+          :value="updateTag"
           ellipsis
           icon="label"
           placeholder="タグを入力してください">
@@ -45,7 +45,7 @@
 <style>
   .search-button {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   .exec-button {
     margin-top: 10px;
@@ -60,7 +60,11 @@ export default {
   data () {
     return {
       articles: [],
-      checkboxPosition: 'left'
+      searchTag: ['レシピ'],
+      updateTag: ['映画'],
+      articleCount: 10,
+      checkboxPosition: 'left',
+      labelPosition: 'on-border'
     }
   },
   methods:{
@@ -74,7 +78,7 @@ export default {
   }, 
   beforeCreate: function() {
     const access_token = localStorage.getItem('pocket_access_token')
-      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=10&tag=グルメ`)
+      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=10&tag=レシピ`)
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)

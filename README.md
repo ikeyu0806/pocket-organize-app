@@ -3,9 +3,6 @@ webpackのbuild
 ```
 # 開発環境
 yarn build:dev
-
-# 本番環境
-yarn build
 ```
 
 Dockerでのバックエンドサーバ立ち上げ
