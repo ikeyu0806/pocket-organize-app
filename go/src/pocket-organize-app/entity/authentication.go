@@ -19,8 +19,3 @@ type AccessTokenResponse struct {
 	AccessToken string `json:"access_token"`
 	UserName    string `json:"username"`
 }
-
-type PocketRequestParam struct {
-	ConsumerKey string `json:"consumer_key"`
-	AccessToken string `json:"access_token"`
-}

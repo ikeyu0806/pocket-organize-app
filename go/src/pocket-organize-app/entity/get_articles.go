@@ -1,5 +1,11 @@
 package entity
 
+type ArticleRequestParam struct {
+	ConsumerKey string `json:"consumer_key"`
+	AccessToken string `json:"access_token"`
+	Count       int    `json:"count"`
+}
+
 type ArticleResponse struct {
 	Status       int `json:"status"`
 	Complete     int `json:"complete"`
