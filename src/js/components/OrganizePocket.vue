@@ -8,7 +8,7 @@
       </b-field>
       <b-field label="タグで検索" :label-position="labelPosition" grouped>
         <b-taginput
-          :value="searchTag"
+          v-model="searchTag"
           ellipsis
           icon="label"
           placeholder="タグを入力してください">
@@ -21,7 +21,7 @@
       </b-button>
       <b-field label="チェックした記事にタグを付与" :label-position="labelPosition" grouped>
         <b-taginput
-          :value="updateTag"
+          v-model="updateTag"
           ellipsis
           icon="label"
           placeholder="タグを入力してください">
@@ -31,17 +31,17 @@
       <b-table :data="articles"
                checkable
                :checkbox-position="checkboxPosition">
+          <b-table-column field="item_id"
+                  label="記事ID"
+                  v-slot="props">
+          {{ props.row.item_id }}
+        </b-table-column>
         <b-table-column field="resolved_title"
                         label="タイトル"
                         v-slot="props">
           <a v-bind:href="props.row.given_url"
              target="_blank"
              rel=“noopener”>{{ articleTitle(props.row.resolved_title) }}</a>
-        </b-table-column>
-          <b-table-column field="time_added"
-                  label="登録日時"
-                  v-slot="props">
-          {{ props.row.time_added }}
         </b-table-column>
       </b-table>
     </div>
@@ -69,8 +69,8 @@ export default {
   data () {
     return {
       articles: [],
-      searchTag: ['レシピ'],
-      updateTag: ['映画'],
+      searchTag: [],
+      updateTag: [],
       articleCount: 30,
       checkboxPosition: 'left',
       labelPosition: 'on-border'
@@ -95,7 +95,7 @@ export default {
       console.log('err:', err);
     })
     }
-  }, 
+  },
   beforeCreate: function() {
     const access_token = localStorage.getItem('pocket_access_token')
       axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=30&tag=_untagged_`)
