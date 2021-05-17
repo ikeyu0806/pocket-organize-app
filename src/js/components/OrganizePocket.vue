@@ -14,7 +14,11 @@
           placeholder="タグを入力してください">
         </b-taginput>
       </b-field>
-      <b-button class="button is-primary search-button">検索する</b-button>
+      <b-button
+        class="button is-primary search-button"
+        v-on:click="searchArticles">
+        検索する
+      </b-button>
       <b-field label="チェックした記事にタグを付与" :label-position="labelPosition" grouped>
         <b-taginput
           :value="updateTag"
@@ -67,7 +71,7 @@ export default {
       articles: [],
       searchTag: ['レシピ'],
       updateTag: ['映画'],
-      articleCount: 10,
+      articleCount: 30,
       checkboxPosition: 'left',
       labelPosition: 'on-border'
     }
@@ -80,10 +84,21 @@ export default {
       }
       return result
     },
+    searchArticles: function() {
+    const access_token = localStorage.getItem('pocket_access_token')
+      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=${this.articleCount}&tag=${this.searchTag}`)
+    .then(response => {
+      console.log('status:', response.status)
+      console.log('body:', response.data)
+      this.articles = Object.values(response.data.list)
+    }).catch(err => {
+      console.log('err:', err);
+    })
+    }
   }, 
   beforeCreate: function() {
     const access_token = localStorage.getItem('pocket_access_token')
-      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=10&tag=レシピ`)
+      axios.get(`http://localhost:5000/get_articles?access_token=${access_token}&count=30&tag=_untagged_`)
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
