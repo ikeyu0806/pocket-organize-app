@@ -22,6 +22,10 @@ func main() {
 		interfaces.Get_articles(w, r)
 	})
 
+	http.HandleFunc("/add_tags", func(w http.ResponseWriter, r *http.Request) {
+		interfaces.AddTags(w, r)
+	})
+
 	http.Handle("/", fs)
 	http.ListenAndServe(":80", nil)
 }
