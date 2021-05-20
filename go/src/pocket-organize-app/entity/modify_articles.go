@@ -1,8 +1,8 @@
 package entity
 
 type ClientModifyRequestParam struct {
-	AccessToken string `json:"access_token"`
-	Tags        string `json:"tag"`
+	AccessToken string   `json:"access_token"`
+	Tags        []string `json:"tags"`
 	// TODO配列にする
 	ItemIDs string `json:"item_ids"`
 }

@@ -28,7 +28,9 @@ func AddTags(w http.ResponseWriter, r *http.Request) {
 	modify_action := new(entity.ModifyAction)
 	modify_action.Action = "tags_add"
 	modify_action.ItemID = request_param.ItemIDs
-	modify_action.Tags = append(modify_action.Tags, request_param.Tags)
+	modify_action.Tags = request_param.Tags
+	fmt.Println("request_param.Tags")
+	fmt.Println(request_param.Tags)
 
 	modify_request_param := new(entity.ModifyRequestParam)
 	modify_request_param.ConsumerKey = os.Getenv(("POCKET_COSUMER_KEY"))

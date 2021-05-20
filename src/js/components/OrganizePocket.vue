@@ -108,7 +108,7 @@ export default {
       axios.post('http://localhost:5000/add_tags', {
         access_token: access_token,
         // TODOここは配列全体を送れるように
-        tag: this.updateTags[0],
+        tags: this.updateTags,
         item_ids: item_ids[0]
       })
       .then(response => {
