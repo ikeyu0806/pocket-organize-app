@@ -105,18 +105,20 @@ export default {
       const access_token = localStorage.getItem('pocket_access_token')
       const item_ids = []
       this.checkedRows.forEach((r) => (item_ids.push(r.item_id)))
-      axios.post('http://localhost:5000/add_tags', {
-        access_token: access_token,
-        // TODOここは配列全体を送れるように
-        tags: this.updateTags,
-        item_ids: item_ids[0]
-      })
-      .then(response => {
-        console.log('status:', response.status)
-        console.log('body:', response.data)
-      }).catch(err => {
-        console.log('err:', err);
-      })
+      item_ids.forEach(item_id => 
+        axios.post('http://localhost:5000/add_tags', {
+          access_token: access_token,
+          // TODOここは配列全体を送れるように
+          tags: this.updateTags,
+          item_ids: item_id
+        })
+        .then(response => {
+          console.log('status:', response.status)
+          console.log('body:', response.data)
+        }).catch(err => {
+          console.log('err:', err);
+        })
+      )
     }
   },
   beforeCreate: function() {
