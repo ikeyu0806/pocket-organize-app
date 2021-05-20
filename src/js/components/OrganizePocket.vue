@@ -1,6 +1,12 @@
 <template>
   <section class="section">
     <div class="container">
+      <b-notification type="is-success" aria-close-label="Close notification" v-if="updateSuccess == 'success'">
+        更新しました。
+      </b-notification>
+      <b-notification type="is-danger" aria-close-label="Close notification" v-if="updateSuccess == 'failure'">
+        更新失敗しました。
+      </b-notification>
       <b-field label="表示記事数" :label-position="labelPosition">
         <b-numberinput :value="articleCount"
                        class="articleCount">
@@ -79,7 +85,8 @@ export default {
       articleCount: 30,
       checkboxPosition: 'left',
       labelPosition: 'on-border',
-      checkedRows: []
+      checkedRows: [],
+      updateSuccess: ''
     }
   },
   methods:{
@@ -115,8 +122,10 @@ export default {
         .then(response => {
           console.log('status:', response.status)
           console.log('body:', response.data)
+          this.updateSuccess = 'success'
         }).catch(err => {
           console.log('err:', err);
+          this.updateSuccess = 'failure'
         })
       )
     }
