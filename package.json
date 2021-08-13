@@ -5,20 +5,20 @@
   "author": "Yuki Ikegaya",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
-    "buefy": "^0.9.7",
-    "css-loader": "^5.2.6",
-    "node-sass": "^6.0.0",
-    "sass-loader": "^12.0.0",
-    "vue": "^2.6.13",
-    "vue-loader": "^15.9.7",
+    "buefy": "^0.9.8",
+    "css-loader": "^6.2.0",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.1.0",
+    "vue": "^2.6.14",
+    "vue-loader": "^15.9.8",
     "vue-svg-loader": "^0.16.0",
-    "vue-template-compiler": "^2.6.13",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.2"
