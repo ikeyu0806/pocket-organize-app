@@ -49,7 +49,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    alias: {
+      appEnv$: path.resolve(__dirname, `webpack_env/development.js`),
+    },
   },
   plugins: [
     new VueLoaderPlugin(),

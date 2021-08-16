@@ -14,16 +14,17 @@
 
 <script>
 import axios from 'axios'
+import appEnv from 'appEnv'
 
 export default {
   methods: {
     open_pocket_auth_page() {
-      axios.get(`${process.env.HOST_URL}/get_request_token`)
+      axios.get(`${appEnv.apiUrl}/get_request_token`)
      .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
       localStorage.setItem('pocket_request_token', response.data.code)
-      window.open(`https://getpocket.com/auth/authorize?request_token=${response.data.code}&redirect_uri=${process.env.HOST_URL}`, '_blank')
+      window.open(`https://getpocket.com/auth/authorize?request_token=${response.data.code}&redirect_uri=${appEnv.apiUrl}`, '_blank')
      }).catch(err => {
       console.log('err:', err);
      })

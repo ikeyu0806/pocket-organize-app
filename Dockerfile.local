@@ -1,6 +1,7 @@
 FROM golang:latest
 
-ENV HOST_URL http://localhost:5000
+ENV REDIRECT_URI http://localhost:5000
+
 RUN mkdir -p -m 775 /usr/local/go/src/pocket-organize-app
 RUN mkdir -p -m 775 /usr/local/go/src/pocket-organize-app/dist/js
 

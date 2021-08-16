@@ -49,12 +49,14 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    alias: {
+      appEnv$: path.resolve(__dirname, `webpack_env/production.js`),
+    },
   },
   plugins: [
     new VueLoaderPlugin(),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production'
     })
   ],
   devServer: {

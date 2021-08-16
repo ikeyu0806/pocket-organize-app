@@ -14,6 +14,7 @@
 
 <script>
 import axios from 'axios'
+import appEnv from 'appEnv'
 
 export default {
   methods: {
@@ -21,7 +22,7 @@ export default {
   created (){
     console.log("mounted")
     const code = localStorage.getItem('pocket_request_token')
-    axios.get(`${process.env.HOST_URL}/get_access_token?code=${code}`)
+    axios.get(`${appEnv.apiUrl}/get_access_token?code=${code}`)
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)

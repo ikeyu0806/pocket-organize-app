@@ -74,6 +74,7 @@
 
 <script>
 import axios from 'axios'
+import appEnv from 'appEnv'
 
 export default {
   data () {
@@ -99,7 +100,7 @@ export default {
     },
     searchArticles: function() {
       const access_token = localStorage.getItem('pocket_access_token')
-      axios.get(`${process.env.HOST_URL}/get_articles?access_token=${access_token}&count=${this.articleCount}&tag=${this.searchTag}`)
+      axios.get(`${appEnv.apiUrl}/get_articles?access_token=${access_token}&count=${this.articleCount}&tag=${this.searchTag}`)
       .then(response => {
         console.log('status:', response.status)
         console.log('body:', response.data)
@@ -113,7 +114,7 @@ export default {
       const item_ids = []
       this.checkedRows.forEach((r) => (item_ids.push(r.item_id)))
       item_ids.forEach(item_id => 
-        axios.post('${process.env.HOST_URL}/add_tags', {
+        axios.post(`${appEnv.apiUrl}/add_tags`, {
           access_token: access_token,
           // TODOここは配列全体を送れるように
           tags: this.updateTags,
@@ -132,7 +133,7 @@ export default {
   },
   beforeCreate: function() {
     const access_token = localStorage.getItem('pocket_access_token')
-      axios.get(`${process.env.HOST_URL}/get_articles?access_token=${access_token}&count=30&tag=_untagged_`)
+      axios.get(`${appEnv.apiUrl}/get_articles?access_token=${access_token}&count=30&tag=_untagged_`)
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
