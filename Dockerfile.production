@@ -1,5 +1,6 @@
 FROM golang:latest
 
+ENV HOST_URL https://damp-earth-91663.herokuapp.com/
 RUN mkdir -p -m 775 /usr/local/go/src/pocket-organize-app
 RUN mkdir -p -m 775 /usr/local/go/src/pocket-organize-app/dist/js
 

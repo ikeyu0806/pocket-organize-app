@@ -21,7 +21,7 @@ export default {
   created (){
     console.log("mounted")
     const code = localStorage.getItem('pocket_request_token')
-    axios.get(`http://localhost:5000/get_access_token?code=${code}`)
+    axios.get(`${process.env.HOST_URL}/get_access_token?code=${code}`)
     .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
