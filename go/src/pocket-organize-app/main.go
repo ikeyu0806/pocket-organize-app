@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"pocket-organize-app/interfaces"
 )
 
@@ -26,6 +27,14 @@ func main() {
 		interfaces.AddTags(w, r)
 	})
 
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "80"
+	}
+
+	port = ":" + port
+
 	http.Handle("/", fs)
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(port, nil)
 }
