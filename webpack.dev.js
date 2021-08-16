@@ -5,7 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   entry: './src/js/app.js',
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
+    path: path.resolve(__dirname, 'dist/dev/js'),
     filename: "bundle.js"
   },
   mode: 'development',
@@ -55,8 +55,6 @@ module.exports = {
     new VueLoaderPlugin(),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
-      POCKET_CONSUMER_KEY: '97290-38a3238a0708edca3a66a111'
-
     })
   ],
   devServer: {
