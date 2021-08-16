@@ -18,7 +18,7 @@ import axios from 'axios'
 export default {
   methods: {
     open_pocket_auth_page() {
-      axios.get('${process.env.HOST_URL}/get_request_token')
+      axios.get(`${process.env.HOST_URL}/get_request_token`)
      .then(response => {
       console.log('status:', response.status)
       console.log('body:', response.data)
